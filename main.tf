@@ -1,15 +1,21 @@
 provider "aws" {
-  region = "us-east-1" # Change to your preferred region
+  region = var.aws_region
 }
 
-resource "aws_instance" "linux_vm" {
-  ami           = "ami-0c02fb55956c7d316" # Amazon Linux 2 AMI for us-east-1; update for your region!
-  instance_type = "t2.micro"
-
-  key_name = "your-key-pair-name" # Replace with the name of your AWS key pair
-
-  # Optional: Add a tag to your instance
+resource "aws_instance" "staging" {
+  ami           = var.ami_id
+  instance_type = var.instance_type
   tags = {
-    Name = "LinuxServer"
+    Name = "staging-server"
+    Environment = "staging"
+  }
+}
+
+resource "aws_instance" "production" {
+  ami           = var.ami_id
+  instance_type = var.instance_type
+  tags = {
+    Name = "production-server"
+    Environment = "production"
   }
 }
