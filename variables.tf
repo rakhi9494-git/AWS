@@ -11,6 +11,5 @@ variable "instance_type" {
 }
 
 variable "key_name" {
-  description = "Name of the existing AWS key pair to use for SSH"
-  default     = "my-key-pair"  # Replace with your actual key pair name
+  default     = "terraform_master"  # Replace with your actual key pair name
 }
